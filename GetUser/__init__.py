@@ -4,12 +4,10 @@ import json
 import azure.functions
 
 # (req: azure.functions.HttpRequest) -> str
-def main(req: azure.functions.HttpRequest) -> str:
-    
-
-    # conversation_id = req.params.get('conversationId')
+def main(req: azure.functions.HttpRequest) -> azure.functions.HttpResponse:
     conversation_id = 'd6d3b70f-0787-49ac-9b48-23703fdbde9a'
-
+    # conversation_id = req.params.get('conversationId')
+    
     region = PureCloudPlatformClientV2.PureCloudRegionHosts.us_west_2
     PureCloudPlatformClientV2.configuration.host = region.get_api_host()
 
@@ -25,4 +23,9 @@ def main(req: azure.functions.HttpRequest) -> str:
 
     user_resp = users_api.get_user(user)
 
-    return user_resp.name
+    name = {'agent': user_resp.name}
+
+    return azure.functions.HttpResponse(
+        json.dumps(name),
+        mimetype="application/json",
+    )
