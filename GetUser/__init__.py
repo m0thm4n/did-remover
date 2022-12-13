@@ -20,7 +20,7 @@ def main(req: azure.functions.HttpRequest) -> azure.functions.HttpResponse:
     calls_api = PureCloudPlatformClientV2.ConversationsApi(apiclient)
     calls_resp = calls_api.get_conversations_call(conversation_id=conversation_id)
 
-    if calls_resp.participants[3].wrapup_required == false:
+    if calls_resp.participants[3].wrapup_required == True:
         # Parse the user from the ConversationCalls Object
         user = calls_resp.participants[3].user.id
 
@@ -36,7 +36,7 @@ def main(req: azure.functions.HttpRequest) -> azure.functions.HttpResponse:
             json.dumps(name),
             mimetype="application/json",
         )
-    elif calls_resp.participants[4].wrapup_required == false:
+    elif calls_resp.participants[4].wrapup_required == True:
         # Parse the user from the ConversationCalls Object
         user = calls_resp.participants[4].user.id
 
@@ -52,7 +52,7 @@ def main(req: azure.functions.HttpRequest) -> azure.functions.HttpResponse:
             json.dumps(name),
             mimetype="application/json",
         )
-    elif calls_resp.participants[5].wrapup_required == false:
+    elif calls_resp.participants[5].wrapup_required == True:
         # Parse the user from the ConversationCalls Object
         user = calls_resp.participants[5].user.id
 
