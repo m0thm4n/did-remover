@@ -20,7 +20,7 @@ def main(req: azure.functions.HttpRequest) -> azure.functions.HttpResponse:
     calls_resp = calls_api.get_conversations_call(conversation_id=conversation_id)
 
     # Parse the user from the ConversationCalls Object
-    user = calls_resp.participants[3].user.id
+    user = calls_resp.participants[4].user.id
 
     # Make the API call for getting a user
     users_api = PureCloudPlatformClientV2.UsersApi(apiclient)
