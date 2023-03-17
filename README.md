@@ -1,0 +1,1 @@
+# To run this application you must configure the correct region and add your bearer token to the .env file.
